@@ -1,0 +1,23 @@
+{
+  "instance_dir": "",
+  "_comment_instance_dir": "留空 = 使用本程序所在目录。整个文件夹拷到任何盘/目录都能直接跑，不用改配置；只有要指向别的 ComfyUI 实例时才填绝对路径。",
+  "port": 8188,
+  "unet_name": "qwen_image_2_1_bf16.safetensors",
+  "clip_name": "qwen3vl_8b_int8_convrot.safetensors",
+  "vae_name": "qwen_image_2.1_vae_bf16.safetensors",
+
+  "sampler_name": "euler",
+  "scheduler": "beta",
+
+  "always_loras": [
+    { "keyword": "viggle-turbo", "strength": 1.0 }
+  ],
+
+  "mode_loras": {
+    "t2i": { "keyword": "NSFW Qwen Lora", "strength": 0.5 },
+    "i2i": { "keyword": "NSFW Image Edit", "strength": 0.8 }
+  },
+
+  "style_lora_keyword": "CG画风",
+  "style_lora_strength": 0.8
+}

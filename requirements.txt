@@ -1,0 +1,12 @@
+# Qwen Image 2.1 Studio —— 界面与客户端依赖
+#
+# 说明：完整整合包已自带 python 运行环境（python\ 目录），正常使用无需安装这些。
+#       本文件仅供「自行搭建 Python 环境」时参考：
+#           python -m pip install -r requirements.txt
+#
+# 注意：ComfyUI 本体的依赖不在这里（它由 ComfyUI 自己的 requirements.txt 管理）。
+
+gradio>=5.50.0
+pillow>=12.3.0
+cryptography>=46.0.0
+numpy>=2.5.0
