@@ -1,0 +1,226 @@
+{
+  "id": "9f2dfc63-3d19-433d-a7c0-49d83464f553",
+  "revision": 0,
+  "last_node_id": 58,
+  "last_link_id": 71,
+  "nodes": [
+    {
+      "id": 57,
+      "type": "MultiplePathsInput",
+      "pos": [
+        -124.6016616821289,
+        -295.5445251464844
+      ],
+      "size": [
+        210,
+        82
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "path_1",
+          "type": "PATH",
+          "link": 71
+        }
+      ],
+      "outputs": [
+        {
+          "name": "paths",
+          "type": "PATH",
+          "slot_index": 0,
+          "links": [
+            70
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MultiplePathsInput",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        1,
+        null
+      ]
+    },
+    {
+      "id": 51,
+      "type": "DisplayText",
+      "pos": [
+        -587.379638671875,
+        239.27667236328125
+      ],
+      "size": [
+        789.0919799804688,
+        122.23515319824219
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 68
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DisplayText",
+        "widget_ue_connectable": {
+          "text": true
+        }
+      },
+      "widgets_values": [
+        "This video captures a breathtaking sunset scene with a dramatic and serene atmosphere. The sky is painted in rich, warm hues of orange, red, and deep amber, with soft clouds streaking across the horizon. The sun, large and radiant, is positioned near the center of the frame, casting a golden glow that illuminates the entire scene. \n\nIn the foreground, a solitary tree stands in silhouette against the vibrant backdrop. Its branches are bare, creating a stark, intricate pattern against the sky, which adds a sense of isolation and tranquility to the scene. The tree is positioned slightly to the right, and its dark outline contrasts sharply with the glowing sky.\n\nAs the video progresses, a flock of birds can be seen flying across the sky, their silhouettes adding movement and life to the otherwise still landscape. The birds appear to be migrating or simply gliding through the air, their flight paths creating a dynamic element against the static beauty of the sunset.\n\nThe overall mood of the video is peaceful and contemplative, evoking a sense of calm and awe at the natural world. The combination of the vibrant colors, the solitary tree, and the flying birds creates a harmonious and visually stunning composition that captures the essence of a tranquil sunset."
+      ]
+    },
+    {
+      "id": 58,
+      "type": "VideoLoader",
+      "pos": [
+        -591.4185180664062,
+        -271.0120544433594
+      ],
+      "size": [
+        430.6719665527344,
+        452.4115295410156
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": null
+        },
+        {
+          "name": "PATH",
+          "type": "PATH",
+          "links": [
+            71
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VideoLoader",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "AnimateDiff_00002.mp4",
+        "image"
+      ]
+    },
+    {
+      "id": 56,
+      "type": "Qwen3_VQA",
+      "pos": [
+        -120.28973388671875,
+        -164.9964141845703
+      ],
+      "size": [
+        322.1059265136719,
+        348
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source_path",
+          "shape": 7,
+          "type": "PATH",
+          "link": 70
+        },
+        {
+          "name": "image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            68
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Qwen3_VQA",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "Describe the video in detail",
+        "Qwen3-VL-4B-Instruct-FP8",
+        "none",
+        false,
+        0.7,
+        2048,
+        126224,
+        362992,
+        193,
+        "randomize",
+        "eager"
+      ]
+    }
+  ],
+  "links": [
+    [
+      68,
+      56,
+      0,
+      51,
+      0,
+      "STRING"
+    ],
+    [
+      70,
+      57,
+      0,
+      56,
+      0,
+      "PATH"
+    ],
+    [
+      71,
+      58,
+      1,
+      57,
+      0,
+      "PATH"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.9646149645000006,
+      "offset": [
+        788.9511067206646,
+        382.6344411516708
+      ]
+    },
+    "frontendVersion": "1.29.1",
+    "ue_links": [],
+    "links_added_by_ue": [],
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

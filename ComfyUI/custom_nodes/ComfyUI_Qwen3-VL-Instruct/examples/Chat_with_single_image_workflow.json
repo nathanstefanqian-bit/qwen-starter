@@ -1,0 +1,230 @@
+{
+  "id": "40b3cd36-b015-4403-9c4c-3b928ed2197c",
+  "revision": 0,
+  "last_node_id": 58,
+  "last_link_id": 71,
+  "nodes": [
+    {
+      "id": 57,
+      "type": "MultiplePathsInput",
+      "pos": [
+        -285.86114501953125,
+        -117
+      ],
+      "size": [
+        210,
+        82
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "path_1",
+          "type": "PATH",
+          "link": 71
+        }
+      ],
+      "outputs": [
+        {
+          "name": "paths",
+          "type": "PATH",
+          "slot_index": 0,
+          "links": [
+            70
+          ]
+        }
+      ],
+      "properties": {
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        1,
+        null
+      ]
+    },
+    {
+      "id": 58,
+      "type": "ImageLoader",
+      "pos": [
+        -540.6984252929688,
+        -119
+      ],
+      "size": [
+        235.52593994140625,
+        334
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": null
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        },
+        {
+          "name": "PATH",
+          "type": "PATH",
+          "links": [
+            71
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageLoader",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "ComfyUI_00532_.png",
+        "image"
+      ]
+    },
+    {
+      "id": 51,
+      "type": "DisplayText",
+      "pos": [
+        -539.5318529256409,
+        294.42168718964416
+      ],
+      "size": [
+        862.3577880859375,
+        212.75289916992188
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 68
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DisplayText",
+        "widget_ue_connectable": {
+          "text": true
+        }
+      },
+      "widgets_values": [
+        "This is a stunning, digitally rendered image of Earth from space, set against a vast, star-filled cosmos. The composition is rich in detail and evokes a sense of awe and wonder.\n\n**Central Focus: Earth**\nThe planet Earth is the dominant subject, shown in a three-quarter view. It's beautifully detailed, with the African continent clearly visible in the foreground, its green landmasses and brown deserts contrasting with the deep blue of the oceans. Swirling white clouds drift across the planet's surface, adding a sense of dynamism. The curvature of the Earth is prominent, emphasizing its spherical shape.\n\n**Lighting and Atmosphere**\nA brilliant, radiant sun is positioned just above the Earth's horizon, casting a warm, golden glow across the planet's surface. This light creates a stunning lens flare effect, with rays of light radiating outward, illuminating the atmosphere and highlighting the planet's features. The side of the Earth facing away from the sun is in shadow, creating a beautiful contrast between the illuminated and darkened hemispheres.\n\n**Background and Surroundings**\nThe backdrop is a deep, dark blue-black expanse of space, densely populated with countless stars. A prominent, sweeping band of the Milky Way galaxy stretches diagonally across the image, adding a sense of depth and scale. The galaxy's faint, glowing nebulae and dust clouds are visible, providing texture and color contrast to the dark void.\n\n**Other Celestial Bodies**\nTo the left of the Earth, a small, dark, spherical object is visible, likely representing the Moon. It appears as a dark silhouette against the brighter background, adding to the cosmic scene.\n\n**Overall Impression**\nThe image is a breathtaking depiction of our planet, highlighting its beauty and fragility in the context of the immense universe. The combination of the detailed Earth, the radiant sun, the starry background, and the distant galaxy creates a powerful and visually captivating scene that is both serene and majestic."
+      ]
+    },
+    {
+      "id": 56,
+      "type": "Qwen3_VQA",
+      "pos": [
+        -53.250892639160156,
+        -118.69114685058594
+      ],
+      "size": [
+        364.96142578125,
+        348
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source_path",
+          "shape": 7,
+          "type": "PATH",
+          "link": 70
+        },
+        {
+          "name": "image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            68
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Qwen3_VQA",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "Describe the image in detail",
+        "Qwen3-VL-4B-Instruct-FP8",
+        "none",
+        false,
+        0.7,
+        2048,
+        126224,
+        346528,
+        1787,
+        "randomize",
+        "eager"
+      ]
+    }
+  ],
+  "links": [
+    [
+      68,
+      56,
+      0,
+      51,
+      0,
+      "STRING"
+    ],
+    [
+      70,
+      57,
+      0,
+      56,
+      0,
+      "PATH"
+    ],
+    [
+      71,
+      58,
+      2,
+      57,
+      0,
+      "PATH"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.061076460950001,
+      "offset": [
+        664.2579219620849,
+        184.6517375800444
+      ]
+    },
+    "frontendVersion": "1.29.1",
+    "ue_links": [],
+    "links_added_by_ue": [],
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
