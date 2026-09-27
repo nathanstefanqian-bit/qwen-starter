@@ -25,6 +25,11 @@ qwen-starter/
 ├─ keys/public_key.pem       # 验签公钥（可公开；对应私钥只在作者手里）
 ├─ docs/LICENSE_DESIGN.md    # 卡密授权系统设计文档
 ├─ requirements.txt          # 自建 Python 环境时的依赖清单
+├─ ComfyUI/custom_nodes/     # 工作流用到的 ComfyUI 自定义节点
+│  ├─ rgthree-comfy/         # 必需：提供 Power Lora Loader (rgthree)
+│  ├─ ComfyUI_Qwen3-VL-Instruct/
+│  ├─ ComfyUI-Manager/
+│  └─ comfyui-custom-scripts/
 └─ 发卡器/                    # 作者专用发卡工具
    ├─ issue_card.py          # 发卡逻辑 + 界面
    ├─ 发卡器.bat              # 双击启动
