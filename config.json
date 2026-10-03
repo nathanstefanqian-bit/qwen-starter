@@ -14,8 +14,8 @@
   ],
 
   "mode_loras": {
-    "t2i": { "keyword": "NSFW Qwen Lora", "strength": 0.5 },
-    "i2i": { "keyword": "NSFW Image Edit", "strength": 0.8 }
+    "t2i": { "keyword": "Qwen Lora", "strength": 0.5 },
+    "i2i": { "keyword": "Qwen-Image-2.1 Image Edit", "strength": 0.8 }
   },
 
   "style_lora_keyword": "CG画风",

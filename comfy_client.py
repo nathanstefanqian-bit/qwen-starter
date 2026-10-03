@@ -4,6 +4,7 @@
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 import mimetypes
@@ -58,6 +59,10 @@ def compute_resolution(aspect_ratio: str, megapixels: float, multiple: int = 32)
 # 工作流图构建
 # --------------------------------------------------------------------------
 
+# 工作流的 TextEncodeQwenImage21 节点最多接这么多张参考图（node 输入是 images.image_N）
+MAX_REF_IMAGES = 16
+
+
 def build_graph(
     *,
     mode: str,
@@ -105,7 +110,7 @@ def build_graph(
     }
     if mode == "i2i":
         text_inputs["vae"] = ["3", 0]
-        for index, filename in enumerate(images[:16], start=1):
+        for index, filename in enumerate(images[:MAX_REF_IMAGES], start=1):
             node_id = str(100 + index)
             graph[node_id] = {"class_type": "LoadImage", "inputs": {"image": filename}}
             text_inputs[f"images.image_{index}"] = [node_id, 0]
@@ -144,6 +149,19 @@ def _safe_filename(name: str) -> str:
     stem, ext = os.path.splitext(os.path.basename(name))
     stem = re.sub(r"[^A-Za-z0-9._-]+", "_", stem).strip("_") or "image"
     return stem + (ext.lower() if ext else ".png")
+
+
+def _unique_upload_name(filepath: str, content: bytes) -> str:
+    """上传用的文件名：ASCII 安全 + 内容指纹，保证不同图片不会重名。
+
+    不能只用 _safe_filename：中文名会被清洗掉，两张不同的中文名图片都变成 image.png，
+    而 ComfyUI 的 /upload/image 是 overwrite=true —— 后一张会直接覆盖前一张，
+    结果就是「选了 5 张，模型只收到 2 张」。加上内容指纹后名字唯一；
+    同一张图重复上传名字不变，不会把 input 目录撑爆。
+    """
+    stem, ext = os.path.splitext(_safe_filename(filepath))
+    digest = hashlib.md5(content).hexdigest()[:10]
+    return f"{stem}_{digest}{ext}"
 
 
 class ComfyClient:
@@ -212,7 +230,7 @@ class ComfyClient:
     def upload_image(self, filepath: str) -> str:
         with open(filepath, "rb") as handle:
             content = handle.read()
-        filename = _safe_filename(filepath)
+        filename = _unique_upload_name(filepath, content)
         boundary = "----QwenStudio" + uuid.uuid4().hex
         parts: list[bytes] = []
 
